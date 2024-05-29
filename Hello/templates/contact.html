@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}
+contact
+{% endblock title %}
+
+{% block activec %}
+active
+{% endblock activec %}
+
+{% block body %}
+<div class="py-3 navbar-dark bg-dark" style="height: 82.8vh;">
+    <div id="getintouch" class="lets-connect">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 justify-content-center info">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-11 text-white" style="margin-top: 57px">
+                            <h2>Contact Us</h2>
+                            <div class="sub-heading">
+                                <p>
+                                    We're thrilled to hear from you! Whether you have a question about our services,
+                                    want to collaborate on a project, or just fancy saying hello, we'd love to hear from
+                                    you. Feel free to drop us a line using the form below, and we'll get back to you as
+                                    soon as possible.
+
+                                    Your feedback is incredibly valuable to us as we strive to continuously improve and
+                                    provide the best experience for our visitors. Don't hesitate to reach out - we're
+                                    here to assist you every step of the way.
+
+                                    <p>Let's start a conversation and explore how we can work together to achieve your
+                                    goals. We're committed to building strong relationships with our clients and
+                                    ensuring that every interaction with us is both productive and enjoyable.</p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 form">
+                    <div id="connectform" class="bg-white rounded py-4 px-5 align-items-center"
+                        style="height: 530px; border-radius: 10px;">
+                        <h4 class="text-center">Contact Us</h4>
+                        <form method="post" action="/contact/">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="nameInput" class="form-label">Name</label>
+                                <input type="text" name="name" class="form-control" id="nameInput" aria-describedby="nameHelp" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="emailInput" class="form-label">Email address</label>
+                                <input type="email" name="email" class="form-control" id="emailInput" aria-describedby="emailHelp" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="numberInput" class="form-label">Phone</label>
+                                <input type="number" name="phone" class="form-control" id="numberInput" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Tell me about what you want to contact me for.</label>
+                                <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                            </div>
+                            <div class="d-flex">
+                                <button type="submit" class="btn btn-primary">Send</button>
+                                <div id="emailHelp" class="form-text mx-4">We'll never share your data with anyone else.</div>
+                            </div>
+                        </form>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ft-copy bg-dark text-white text-center">
+    <div class="container py-2">
+        <div class="row">
+            <hr>
+            <div class="col-md-12">
+                <p>© Copyright 1997 - 2024,INT. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}

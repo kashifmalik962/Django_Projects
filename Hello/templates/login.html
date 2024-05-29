@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login & Signup Page
+{% endblock title %}
+
+
+{% block nav %}
+navbar-dark bg-dark
+{% endblock nav %}
+
+{% block activeh %}
+active
+{% endblock activeh %}
+
+{% block body %}
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        max-width: 450px;
+        border: 1px solid rgb(206, 194, 194);
+        padding: 25px;
+        border-radius: 5px;
+    }
+
+    .swap-btn {
+        float: right; /* Button initially floats to the right */
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-top: 50px;
+    }
+</style>
+
+<body>
+
+    {% if user.is_authenticated %}
+        <form action="/show/" method="POST">
+            {% csrf_token %}
+            <button id="swapButton" class="btn btn-primary my-2 mx-1 swap-btn" type="submit">Personal Info</button>
+        </form>
+    {% endif %}
+
+
+    <div class="container my-3">
+        <ul class="nav nav-tabs" id="tabMenu">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#login" onclick="changeTab('login')">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#signup" onclick="changeTab('signup')">Sign Up</a>
+            </li>
+        </ul>
+        <div class="tab-content mt-3">
+            <div class="tab-pane fade show active" id="login">
+                <h2 class="mb-3">Login</h2>
+                <form method="POST" action="/login/">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="loginEmail" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" id="loginEmail" aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="loginPassword" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+            </div>
+            <div class="tab-pane fade" id="signup">
+                <h2 class="mb-3">Sign Up</h2>
+                <form method="POST" action="/signup/">
+                    {% csrf_token %}
+                    <div class="mb-2.5">
+                        <label for="signupUsername" class="form-label">Username</label>
+                        <input type="text" name="username" class="form-control" id="signupUsername" required>
+                    </div>
+                    <div class="mb-2.5">
+                        <label for="signupEmail" class="form-label">Email address</label>
+                        <input type="email" name="email" class="form-control" id="signupEmail" aria-describedby="emailHelp" required>
+                    </div>
+                    <div class="mb-2.5">
+                        <label for="signupPassword" class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" id="signupPassword" required>
+                    </div>
+                    <div class="mb-2.5">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" name="cpassword" class="form-control" id="confirmPassword" required>
+                        <small id="passwordHelp" class="text-danger"></small>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 my-2">Sign Up</button>
+                </form>
+            </div>            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        function changeTab(tab) {
+            if (tab === 'login') {
+                window.history.pushState({}, '', '/login');
+            } else if (tab === 'signup') {
+                window.history.pushState({}, '', '/signup');
+            }
+        }
+
+        const passwordInput = document.getElementById('signupPassword');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+        const passwordHelpText = document.getElementById('passwordHelp');
+    
+        function validatePassword() {
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                passwordHelpText.textContent = "Passwords do not match";
+                return false;
+            } else {
+                passwordHelpText.textContent = "";
+                return true;
+            }
+        }
+        confirmPasswordInput.addEventListener('input', validatePassword);
+
+        // Function to check if the page is refreshed and redirect to /login
+        window.onload = function () {
+            if (performance.navigation.type == 1) {
+                window.history.pushState({}, '', '/login');
+            }
+        };
+    </script>
+</body>
+{% endblock body %}

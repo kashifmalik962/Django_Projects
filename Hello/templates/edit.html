@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+edit
+{% endblock title %}
+
+{% block body %}
+<div class="container">
+    <form method="POST" action="/update/{{ user.username }}">
+        {% csrf_token %}
+        <div class="mb-2.5">
+            <label for="signupUsername" class="form-label">Username</label>
+            <input type="text" name="username" value="{{ user.username }}" class="form-control" id="signupUsername" required>
+        </div>
+        <div class="mb-2.5">
+            <label for="signupEmail" class="form-label">Email address</label>
+            <input type="email" name="email" value="{{ user.email }}" class="form-control" id="signupEmail" aria-describedby="emailHelp" required>
+        </div>
+        <div class="mb-2.5">
+            <label for="signupPassword" class="form-label">Password</label>
+            <input type="password" name="password" placeholder="Leave blank to keep current password" class="form-control" id="signupPassword">
+        </div>
+        <div class="mb-2.5">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+            <input type="password" name="cpassword" class="form-control" id="confirmPassword" required>
+            <small id="passwordHelp" class="text-danger">Leave this field blank to keep the current password.</small>
+        </div>
+        <button type="submit" name="update" value="update" class="btn btn-warning w-100 my-2">Update</button>
+    </form>
+</div>
+{% endblock body %}

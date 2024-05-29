@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}
+About
+{% endblock title %}
+
+{% block nav %}
+navbar-dark bg-dark
+{% endblock nav %}
+
+{% block activea %}
+active
+{% endblock activea %}
+
+{% block body %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 0 20px;
+        text-align: center;
+    }
+    h1 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+    p {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+</style>
+
+<div class="container">
+    <h1>About Us</h1>
+    <img src="\static\img\ice_cream_logo.jpg" alt="Ice Cream Shop Logo">
+    <p>Welcome to Our Ice Cream Shop! We're passionate about making delicious, high-quality ice cream that brings smiles to our customers' faces.</p>
+        <p>Our journey began a few months ago when our founder, Kashif Malik, started experimenting with unique flavor combinations in his kitchen. As time passed, our simple hobby evolved into a thriving ice cream business.</p>
+        <p>At Our Ice Cream Shop, we carefully select the best ingredients to make our creamy, irresistible treats. From timeless favorites like vanilla and chocolate to inventive flavors like salted caramel swirl and raspberry cheesecake, there's something for everyone to savor.</p>
+        <p>We're dedicated to providing outstanding customer service and creating a friendly environment for ice cream enthusiasts of all ages.</p>
+        <p>Thank you for choosing Our Ice Cream Shop. We can't wait to serve you!</p>
+</div>
+
+{% endblock body %}
